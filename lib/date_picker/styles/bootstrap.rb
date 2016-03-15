@@ -12,11 +12,11 @@ module DatePicker
       def mapping()
         :moment
       end
-      def template() 
+      def template()
         %{
           <div id="<%= input_id %>_container" class="input-group">
             <div class="input-group-addon" style="cursor: pointer">
-              <span class="glyphicon glyphicon-calendar"></span>
+              <span class="fa fa-calendar"></span>
             </div>
             <%= input_html %>
           </div>
@@ -29,12 +29,9 @@ module DatePicker
                   format: <%= format.to_json %>
                 }))
                 .on('dp.change', function(e) {
-                  $('#<%= input_id %>_hidden').val(e.date.format('<%= data_format %>'));
-                }).data('DateTimePicker'),
-                date = new Date(<%= time; %>);
-              <% if type.to_s == 'datetime' %>
-                datepicker.date(moment(date))
-              <% end %>
+                  $('#<%= input_id %>_hidden').val(e.date ? e.date.format('<%= data_format %>') : '');
+                }).data('DateTimePicker');
+              <% if time %> datepicker.date(moment(new Date(<%= time %>))); <% end %>
             })();
           </script>
         }

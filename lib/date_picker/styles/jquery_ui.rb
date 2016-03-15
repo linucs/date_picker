@@ -7,7 +7,7 @@ module DatePicker
       def mapping()
         :jquery_ui
       end
-      def template() 
+      def template()
         %{
           <%= input_html %>
           <input id="<%= input_id %>_hidden" type="hidden" value="<%= value %>" name="<%= name %>"/>
@@ -23,7 +23,6 @@ module DatePicker
                 locale: <%= locale.to_json %>,
                 dateFormat: <%= format.to_json %>
               })).on('change', function(e) {
-                console.log("change: ", $('#<%= input_id %>').val());
                 $('#<%= input_id %>_hidden').val($.datepicker.formatDate('<%= data_format %>', $('#<%= input_id %>').datepicker('getDate')));
               });
               <% if time %> $('#<%= input_id %>').datepicker('setDate', new Date(<%= time %>)); <% end %>

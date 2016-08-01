@@ -24,12 +24,12 @@ module DatePicker
           <script>
             (function() {
               var
-                datepicker = $('#<%= input_id %>_container').datetimepicker($.extend({}, <%= json_options %>, {
+                datepicker = jQuery('#<%= input_id %>_container').datetimepicker(jQuery.extend({}, <%= json_options %>, {
                   locale: <%= locale.to_json %>,
                   format: <%= format.to_json %>
                 }))
                 .on('dp.change', function(e) {
-                  $('#<%= input_id %>_hidden').val(e.date ? e.date.format('<%= data_format %>') : '');
+                  jQuery('#<%= input_id %>_hidden').val(e.date ? e.date.format('<%= data_format %>') : '');
                 }).data('DateTimePicker');
               <% if time %> datepicker.date(moment(new Date(<%= time %>))); <% end %>
             })();

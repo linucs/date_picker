@@ -13,7 +13,7 @@ module DatePicker
           <input id="<%= input_id %>_hidden" type="hidden" value="<%= value %>" name="<%= name %>"/>
           <script>
             (function() {
-              $('#<%= input_id %>').datepicker($.extend({
+              jQuery('#<%= input_id %>').datepicker($.extend({
                 monthNames: <%= month_names.to_json %>,
                 monthNamesShort: <%= abbr_month_names.to_json %>,
                 dayNames: <%= day_names.to_json %>,
@@ -23,9 +23,9 @@ module DatePicker
                 locale: <%= locale.to_json %>,
                 dateFormat: <%= format.to_json %>
               })).on('change', function(e) {
-                $('#<%= input_id %>_hidden').val($.datepicker.formatDate('<%= data_format %>', $('#<%= input_id %>').datepicker('getDate')));
+                jQuery('#<%= input_id %>_hidden').val($.datepicker.formatDate('<%= data_format %>', jQuery('#<%= input_id %>').datepicker('getDate')));
               });
-              <% if time %> $('#<%= input_id %>').datepicker('setDate', new Date(<%= time %>)); <% end %>
+              <% if time %> jQuery('#<%= input_id %>').datepicker('setDate', new Date(<%= time %>)); <% end %>
             })();
           </script>
         }
